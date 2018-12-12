@@ -8,11 +8,12 @@ import (
 	"encoding/json"
 	"strconv"
 
-	"github.com/btcsuite/btcd/btcjson"
+	"github.com/qizikd/btcd/btcjson"
 	"github.com/btcsuite/btcd/chaincfg"
 	"github.com/btcsuite/btcd/chaincfg/chainhash"
 	"github.com/btcsuite/btcd/wire"
 	"github.com/btcsuite/btcutil"
+	"fmt"
 )
 
 // *****************************
@@ -1417,6 +1418,7 @@ func (r FutureGetBalanceResult) Receive() (btcutil.Amount, error) {
 		return 0, err
 	}
 
+	fmt.Println("res: ",string(res))
 	// Unmarshal result as a floating point number.
 	var balance float64
 	err = json.Unmarshal(res, &balance)

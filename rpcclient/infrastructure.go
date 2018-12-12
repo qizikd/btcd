@@ -887,6 +887,7 @@ func (c *Client) sendCmd(cmd interface{}) chan *response {
 		marshalledJSON: marshalledJSON,
 		responseChan:   responseChan,
 	}
+	fmt.Println("SendJSON: ",string(jReq.marshalledJSON))
 	c.sendRequest(jReq)
 
 	return responseChan

@@ -696,4 +696,7 @@ func init() {
 	MustRegisterCmd("walletlock", (*WalletLockCmd)(nil), flags)
 	MustRegisterCmd("walletpassphrase", (*WalletPassphraseCmd)(nil), flags)
 	MustRegisterCmd("walletpassphrasechange", (*WalletPassphraseChangeCmd)(nil), flags)
+	MustRegisterCmd("omni_getbalance", (*Omni_GetbalanceCmd)(nil), flags)
+	MustRegisterCmd("omni_send", (*Omni_SendCmd)(nil), flags)
+	MustRegisterCmd("omni_listtransactions", (*Omni_ListtransactionsCmd)(nil), flags)
 }
