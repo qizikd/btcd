@@ -39,6 +39,7 @@ type Omni_ListtransactionResult struct {
 func (r FutureGetOmniBalanceResult) Receive() (int, error) {
 	res, err := receiveFuture(r)
 	if err != nil {
+		fmt.Println("GetOmniBalanceResultError:",err)
 		return 0, err
 	}
 	fmt.Println("GetOmniBalanceResult: ", string(res))
