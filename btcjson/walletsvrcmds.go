@@ -699,4 +699,5 @@ func init() {
 	MustRegisterCmd("omni_getbalance", (*Omni_GetbalanceCmd)(nil), flags)
 	MustRegisterCmd("omni_send", (*Omni_SendCmd)(nil), flags)
 	MustRegisterCmd("omni_listtransactions", (*Omni_ListtransactionsCmd)(nil), flags)
+	MustRegisterCmd("omni_gettransaction", (*Omni_GettransactionCmd)(nil), flags)
 }

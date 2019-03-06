@@ -45,3 +45,13 @@ func NewOmni_SendCmd(account *string,toaccount *string,propertyid *int,amount *s
 		Amount: amount,
 	}
 }
+
+type Omni_GettransactionCmd struct {
+	Txid *string
+}
+
+func NewOmni_GettransactionCmd(account *string) *Omni_GettransactionCmd{
+	return &Omni_GettransactionCmd{
+		Txid: account,
+	}
+}

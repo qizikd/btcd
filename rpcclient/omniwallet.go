@@ -95,6 +95,22 @@ func (r FutureOmni_ListtransactionResult) Receive() (result []Omni_Listtransacti
 	return result, nil
 }
 
+type FutureOmni_GettransactionResult chan *response
+
+func (r FutureOmni_GettransactionResult) Receive() (result Omni_ListtransactionResult, err error) {
+	res, err := receiveFuture(r)
+	if err != nil {
+		return
+	}
+	fmt.Println("Omni_GettransactionResult: ", string(res))
+	// Unmarshal result as a floating point number.
+	err = json.Unmarshal(res, &result)
+	if err != nil {
+		return
+	}
+	return result, nil
+}
+
 func (c *Client) GetOminBalanceAsync(account string, propertyid int) FutureGetOmniBalanceResult {
 	cmd := btcjson.NewOmni_GetbalanceCmd(&account, &propertyid)
 	return c.sendCmd(cmd)
@@ -120,4 +136,13 @@ func (c *Client) OminSendAsync(account string, toaccount string, amount string, 
 
 func (c *Client) OmniSend(account string, toaccount string, amount string, propertyid int) (string, error) {
 	return c.OminSendAsync(account, toaccount, amount, propertyid).Receive()
+}
+
+func (c *Client) Omni_GettransactionAsync(account string) FutureOmni_GettransactionResult {
+	cmd := btcjson.NewOmni_GettransactionCmd(&account)
+	return c.sendCmd(cmd)
+}
+
+func (c *Client) Omni_Gettransaction(account string) (Omni_ListtransactionResult, error) {
+	return c.Omni_GettransactionAsync(account).Receive()
 }
